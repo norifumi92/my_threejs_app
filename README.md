@@ -1,5 +1,5 @@
 # About this project
-This project is created to establish the environment to develop `three.js` locally. This uses `Browserify` to bundle up `main.js` with `three.js`. 
+This project is created to establish the environment to develop `three.js` locally. This uses `Browserify(Beefy)` to bundle up `main.js` with `three.js`. 
  
 ## Installation
 
@@ -7,6 +7,8 @@ Run and install followings:
 ```bash
 #install browserify
 npm install --global browserify
+#install Beefy
+
 #install three.js
 npm install three --save
 ```
