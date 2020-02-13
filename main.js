@@ -1,25 +1,40 @@
 var THREE = require('three');
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+// these need to be accessed inside more than one function so we'll declare them first
+let renderer;
+let camera;
+let scene;
+let mesh;
 
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+function init() {
+    renderer = new THREE.WebGLRenderer();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
 
-var geometry = new THREE.BoxGeometry();
-var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-var cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color( 0xffffff ); 
 
-camera.position.z = 5;
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+    camera.position.set( 0, 0, 5 );
+    camera.lookAt( 0, 0, 0 );
 
-var animate = function () {
+    var geometry = new THREE.BoxGeometry();
+    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    mesh = new THREE.Mesh( geometry, material );
+
+    scene.add( mesh );
+}
+
+function animate() {
     requestAnimationFrame( animate );
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    mesh.rotation.x += 0.01;
+    mesh.rotation.y += 0.01;
 
     renderer.render( scene, camera );
 };
 
+// call the init function to set everything up
+init();
+
+// then call the animate function to render the scene
 animate();
