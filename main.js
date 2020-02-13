@@ -4,6 +4,7 @@ let renderer;
 let camera;
 let scene;
 let mesh;
+let light;
 
 function init() {
     renderer = new THREE.WebGLRenderer();
@@ -18,10 +19,21 @@ function init() {
     camera.lookAt( 0, 0, 0 );
 
     var geometry = new THREE.BoxGeometry();
-    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    const materialSpecObject = {
+        color: 0xff8500,
+        transparent: false,
+        opacity: 1,
+      };
+    
+    //material should not be MeshBasicMaterial since it will not react to lights.
+    const material = new THREE.MeshStandardMaterial(materialSpecObject);
     mesh = new THREE.Mesh( geometry, material );
-
     scene.add( mesh );
+
+    light = new THREE.DirectionalLight( 0xffffff, 1.0);
+    light.position.set( 0, 1, 0 );
+    scene.add( light );
+
 }
 
 function animate() {
