@@ -37,6 +37,13 @@ function init() {
     light.position.set( 0, 1, 0 );
     scene.add( light );
 
+    // start the animation loop
+    renderer.setAnimationLoop( () => {
+    update();
+    render();
+    
+    } );
+
 }
 
 function animate() {
@@ -69,9 +76,3 @@ function render() {
 // call the init function to set everything up
 init();
 
-// start the animation loop
-renderer.setAnimationLoop( () => {
-    update();
-    render();
-    
-    } );
