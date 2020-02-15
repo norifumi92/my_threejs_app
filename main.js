@@ -5,11 +5,14 @@ let camera;
 let scene;
 let mesh;
 let light;
+let container;
 
 function init() {
+    container = document.querySelector( '#scene-container' )
+
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
+    container.appendChild( renderer.domElement );
 
     scene = new THREE.Scene();
     scene.background = new THREE.Color( 0xffffff ); 
